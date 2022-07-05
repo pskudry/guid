@@ -17,5 +17,5 @@ public class AtributesEntities {
     private long id;
     private long idEntities;
     private String name;
-    private long idType;
+    private AttributeType attributeType;
 }

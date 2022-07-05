@@ -1,6 +1,7 @@
 package com.example.guid.dao;
 
 import com.example.guid.dao.rel.AtributeValuesRel;
+import com.example.guid.dao.rowmapper.AtributeValuesRowMapper;
 import com.example.guid.model.AtributesValue;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
@@ -35,5 +36,11 @@ public class AtributeValuesRepository {
                 .set(AtributeValuesRel.RECORD_ID, atributesValue.getNumberRecord())
                 .set(AtributeValuesRel.VALUE, atributesValue.getValues())
                 .execute();
+    }
+
+    public AtributesValue selectValue(final String value) {
+        return  dslContext.selectFrom(AtributeValuesRel.INSTANCE)
+                .where(AtributeValuesRel.VALUE.eq(value))
+                .fetchOne(new AtributeValuesRowMapper());
     }
 }

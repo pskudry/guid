@@ -1,5 +1,6 @@
 package com.example.guid.dao.rel;
 
+import com.example.guid.model.AttributeType;
 import org.jooq.Record;
 import org.jooq.TableField;
 import org.jooq.impl.SQLDataType;
@@ -22,6 +23,6 @@ public final class AtributeEntitiesRel extends TableImpl<Record> {
 
     public static final TableField<Record, Long> ID_ENTITIES = createField(name("entity_id"), SQLDataType.BIGINT, INSTANCE);
 
-    public static final TableField<Record, Long> ID_TYPE = createField(name("type_id"), SQLDataType.BIGINT, INSTANCE);
+    public static final TableField<Record, String> ATTR_TYPE = createField(name("attr_type"), SQLDataType.VARCHAR, INSTANCE);
 
 }

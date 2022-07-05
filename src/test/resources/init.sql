@@ -15,13 +15,13 @@ DROP TABLE IF exists entities;
 
 CREATE TABLE entities
 (
-	id BIGINT DEFAULT NEXTVAL('entities_seq'),
+    id BIGINT DEFAULT NEXTVAL('entities_seq'),
     entity_name VARCHAR(100),
     description VARCHAR(4000),
     CONSTRAINT entities_pk PRIMARY KEY (id)
 );
 
- 
+
 
 CREATE TABLE attributes_entities
 (
@@ -35,7 +35,7 @@ CREATE TABLE attributes_entities
 
 CREATE TABLE attribute_values
 (
-	id BIGINT DEFAULT NEXTVAL('attribute_values_seq'),
+    id BIGINT DEFAULT NEXTVAL('attribute_values_seq'),
     attr_id BIGINT NOT NULL,
     record_id BIGINT NOT NULL,
     value VARCHAR(4000),

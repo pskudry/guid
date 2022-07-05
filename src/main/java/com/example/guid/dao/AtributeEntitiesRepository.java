@@ -3,6 +3,7 @@ package com.example.guid.dao;
 import com.example.guid.dao.rel.AtributeEntitiesRel;
 import com.example.guid.dao.rowmapper.AtributeEntitiesRowMapper;
 import com.example.guid.model.AtributesEntities;
+import com.example.guid.model.AttributeType;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
@@ -49,8 +50,8 @@ public class AtributeEntitiesRepository {
                         .insertInto(AtributeEntitiesRel.INSTANCE,
                                 AtributeEntitiesRel.NAME,
                                 AtributeEntitiesRel.ID_ENTITIES,
-                                AtributeEntitiesRel.ID_TYPE)
-                        .values(a.getName(), a.getIdEntities(), a.getIdType())
+                                AtributeEntitiesRel.ATTR_TYPE)
+                        .values(a.getName(), a.getIdEntities(), a.getAttributeType().toString())
                 ).collect(Collectors.toList())
         ).execute();
     }
@@ -61,8 +62,8 @@ public class AtributeEntitiesRepository {
                 .columns(
                 AtributeEntitiesRel.NAME,
                 AtributeEntitiesRel.ID_ENTITIES,
-                AtributeEntitiesRel.ID_TYPE)
-                .values(atributesEntities.getName(), atributesEntities.getIdEntities(), atributesEntities.getIdType())
+                AtributeEntitiesRel.ATTR_TYPE)
+                .values(atributesEntities.getName(), atributesEntities.getIdEntities(), atributesEntities.getAttributeType().toString())
                 .execute();
     }
 
@@ -71,7 +72,7 @@ public class AtributeEntitiesRepository {
         return  dslContext.update(AtributeEntitiesRel.INSTANCE)
                 .set(AtributeEntitiesRel.NAME, atributesEntities.getName())
                 .set(AtributeEntitiesRel.ID_ENTITIES, atributesEntities.getIdEntities())
-                .set(AtributeEntitiesRel.ID_TYPE, atributesEntities.getIdType())
+                .set(AtributeEntitiesRel.ATTR_TYPE, atributesEntities.getAttributeType().toString())
                 .where(AtributeEntitiesRel.ID.eq(atributesEntities.getId()))
                 .execute();
     }
