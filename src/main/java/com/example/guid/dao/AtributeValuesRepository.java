@@ -8,6 +8,8 @@ import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class AtributeValuesRepository {
@@ -41,6 +43,17 @@ public class AtributeValuesRepository {
     public AtributesValue selectValue(final String value) {
         return  dslContext.selectFrom(AtributeValuesRel.INSTANCE)
                 .where(AtributeValuesRel.VALUE.eq(value))
+                .fetchOne(new AtributeValuesRowMapper());
+    }
+
+    public List<AtributesValue> selectListValue(List<Long> idAtr) {
+        return dslContext.selectFrom(AtributeValuesRel.INSTANCE)
+                .where(AtributeValuesRel.ID_ATRIBUTE.in(idAtr))
+                .fetch(new AtributeValuesRowMapper());
+    }
+    public AtributesValue selectByAtrId(Long atrId) {
+        return  dslContext.selectFrom(AtributeValuesRel.INSTANCE)
+                .where(AtributeValuesRel.ID_ATRIBUTE.eq(atrId))
                 .fetchOne(new AtributeValuesRowMapper());
     }
 }
